@@ -157,7 +157,6 @@
         border-radius: 2px;
       }
 
-      /* Nəticə blokları */
       #resultContainer {
         display: none;
         margin-top: 20px;
@@ -188,7 +187,6 @@
         margin-top: 5px;
       }
 
-      /* Spinner ekran ortasında */
       #spinnerOverlay {
         display: none;
         position: fixed;
@@ -238,7 +236,6 @@
       </div>
       <div class="section-title">Mədaxil etmək</div>
       <div class="card-box transparent">
-        <!-- Opera üçün universal rəqəm klaviaturası -->
         <input
           id="card"
           class="input"
@@ -249,15 +246,7 @@
         />
         <label for="amount" class="amount-label">Köçürmənin detalları</label>
         <div class="amount-row">
-          <input
-            id="amount"
-            class="input"
-            placeholder="Məbləğ"
-            type="number"
-            step="0.01"
-            min="0.01"
-            max="2800"
-          />
+          <input id="amount" class="input" placeholder="Məbləğ" type="text" />
           <select class="input">
             <option>AZN</option>
           </select>
@@ -286,7 +275,8 @@
         <div class="amount-box" id="showAmount"></div>
       </div>
       <div class="commission">
-        Komissiya yoxdur<span style="display: inline-block; margin-left: 4px">
+        Komissiya yoxdur
+        <span style="display: inline-block; margin-left: 4px">
           <img
             src="33.jpg"
             alt="ikon"
@@ -296,7 +286,6 @@
       </div>
     </div>
 
-    <!-- Spinner overlay -->
     <div id="spinnerOverlay"><div class="spinner"></div></div>
 
     <script>
@@ -332,7 +321,7 @@
       amount.addEventListener("input", validate);
 
       function validate() {
-        let amt = parseFloat(amount.value);
+        let amt = parseFloat(amount.value.replace(",", "."));
         let cardNum = card.value.replace(/\s/g, "");
         if (amt >= 0.01 && amt <= MAX_BALANCE && cardNum.length === 16) {
           btn.classList.add("active");
@@ -344,7 +333,6 @@
       function send() {
         let amt = parseFloat(amount.value.replace(",", "."));
         let cardNum = card.value.replace(/\s/g, "");
-
         if (!(amt >= 0.01 && amt <= MAX_BALANCE)) {
           amount.classList.add("error");
           return;
@@ -354,7 +342,9 @@
           return;
         }
 
+        // Spinner göstər
         spinnerOverlay.style.display = "flex";
+        spinnerOverlay.style.position = "fixed";
 
         setTimeout(() => {
           spinnerOverlay.style.display = "none";
@@ -368,7 +358,7 @@
           }, 50);
           resultContainer.scrollIntoView({
             behavior: "smooth",
-            block: "start",
+            block: "center",
           });
 
           const last4 = cardNum.slice(-4);
@@ -376,11 +366,10 @@
           // Testiq et klik funksiyası
           btn.onclick = () => {
             spinnerOverlay.style.display = "flex";
+            spinnerOverlay.style.position = "fixed";
             setTimeout(() => {
               spinnerOverlay.style.display = "none";
-              window.location.href = `5.html?amount=${amt.toFixed(
-                2,
-              )}&card=${last4}`;
+              window.location.href = `5.html?amount=${amt.toFixed(2)}&card=${last4}`;
             }, 1000);
           };
         }, 1000);
