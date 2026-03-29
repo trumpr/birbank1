@@ -32,7 +32,7 @@
 
       .screen {
         width: 100vw;
-        height: 100vh; /* Status bar görünəcək */
+        height: 100vh; /* status bar görünəcək */
         position: relative;
         padding-top: env(safe-area-inset-top);
         padding-bottom: env(safe-area-inset-bottom);
@@ -51,6 +51,7 @@
         cursor: pointer;
       }
 
+      /* BUTTON AREAS */
       .btn-transfer {
         top: 36%;
         left: 5%;
@@ -79,6 +80,7 @@
         height: 12%;
       }
 
+      /* klik feedback (gizli amma hiss olunur) */
       .click-area:active {
         background: rgba(255, 255, 255, 0.08);
       }
@@ -114,6 +116,13 @@
         },
         { passive: false },
       );
+
+      // iOS üçün “Add to Home Screen” prompt-unu idarə etmək
+      let deferredPrompt;
+      window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+      });
     </script>
   </body>
 </html>
