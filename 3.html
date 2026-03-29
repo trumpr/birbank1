@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Köçürmələr</title>
+
+    <style>
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #f2f3f5;
+      }
+
+      .header {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        background: #fff;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .back {
+        position: absolute;
+        left: 16px;
+        font-size: 22px;
+        cursor: pointer;
+      }
+
+      .list {
+        margin-top: 10px;
+      }
+
+      .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #fff;
+        padding: 14px 16px;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+      }
+
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        background: #ffe6ea;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .icon svg {
+        width: 20px;
+        height: 20px;
+        stroke: #ff2d55;
+      }
+
+      .text {
+        font-size: 16px;
+        color: #111;
+      }
+
+      .arrow {
+        color: #bbb;
+        font-size: 20px;
+      }
+
+      .bottom {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: #fff;
+        border-top: 1px solid #eee;
+        display: flex;
+        justify-content: space-around;
+        padding: 8px 0;
+      }
+
+      .bottom div {
+        font-size: 12px;
+        color: #999;
+        text-align: center;
+      }
+
+      .bottom .active {
+        color: #ff2d55;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="header">
+      <div class="back" onclick="history.back()">←</div>
+      Köçürmələr
+    </div>
+
+    <div class="list">
+      <div class="item">
+        <div class="left">
+          <div class="icon">
+            <svg fill="none" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M7 7h10M7 17h10M17 7l4 4-4 4M7 17l-4-4 4-4" />
+            </svg>
+          </div>
+          <div class="text">Mənim kart və hesablarım arasında</div>
+        </div>
+        <div class="arrow">›</div>
+      </div>
+
+      <!-- 2-ci item: Yalnız bu keçid edəcək -->
+      <div class="item" id="bankCard">
+        <div class="left">
+          <div class="icon">
+            <svg fill="none" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="2" y="6" width="20" height="12" rx="2" />
+            </svg>
+          </div>
+          <div class="text">İstənilən bank kartına</div>
+        </div>
+        <div class="arrow">›</div>
+      </div>
+
+      <div class="item">
+        <div class="left">
+          <div class="icon">
+            <svg fill="none" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M6 20c0-4 12-4 12 0" />
+            </svg>
+          </div>
+          <div class="text">Dosta köçürmə</div>
+        </div>
+        <div class="arrow">›</div>
+      </div>
+
+      <div class="item">
+        <div class="left">
+          <div class="icon">
+            <svg fill="none" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 2v20M2 12h20" />
+            </svg>
+          </div>
+          <div class="text">AniPay ilə köçürmə</div>
+        </div>
+        <div class="arrow">›</div>
+      </div>
+
+      <div class="item">
+        <div class="left">
+          <div class="icon">
+            <svg fill="none" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="9" cy="7" r="3" />
+              <circle cx="17" cy="7" r="3" />
+              <path d="M2 20c0-3 14-3 14 0M10 20c0-3 12-3 12 0" />
+            </svg>
+          </div>
+          <div class="text">Dostlardan pul sorğusu</div>
+        </div>
+        <div class="arrow">›</div>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div class="active">Əsas</div>
+      <div>Bizdən sizə</div>
+      <div>Bir Pay QR</div>
+      <div>Ödənişlər</div>
+      <div>Daha çox</div>
+    </div>
+
+    <script>
+      const bankCard = document.getElementById("bankCard");
+
+      bankCard.addEventListener("click", function () {
+        // 1 saniyə gecikmə
+        setTimeout(() => {
+          window.location.href = "4.html";
+        }, 1000); // 1000ms = 1 saniyə
+      });
+    </script>
+  </body>
+</html>

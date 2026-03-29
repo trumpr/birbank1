@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kapital UI Spinner Ortada</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: -apple-system, sans-serif;
+        background: #f5f6f8;
+        padding-bottom: 180px;
+      }
+      .container {
+        max-width: 420px;
+        margin: auto;
+        padding: 20px;
+      }
+      h1 {
+        font-size: 24px;
+        margin-bottom: 15px;
+      }
+      .section-title {
+        font-weight: 400;
+        margin: 10px 5px;
+      }
+      .card-box {
+        background: #fff;
+        border-radius: 16px;
+        padding: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+      .bank-card {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .card-img {
+        width: 55px;
+        height: 35px;
+        border-radius: 8px;
+        object-fit: cover;
+      }
+      .card-info {
+        flex: 1;
+      }
+      .balance {
+        font-size: 13px;
+      }
+      .input {
+        width: 100%;
+        padding: 14px;
+        border-radius: 12px;
+        border: 1px solid #eee;
+        font-size: 15px;
+        box-sizing: border-box;
+        transition: 0.2s;
+      }
+      .input:focus {
+        border-color: #000;
+        outline: none;
+      }
+      #card {
+        margin-bottom: 20px;
+      }
+      .row {
+        display: flex;
+        gap: 10px;
+      }
+      .amount-label {
+        font-size: 12px;
+        color: black;
+        margin-bottom: 5px;
+        display: block;
+      }
+      .amount-btn {
+        flex: 1;
+        padding: 12px;
+        border-radius: 12px;
+        border: none;
+        background: #f1f1f1;
+        cursor: pointer;
+      }
+      .submit {
+        width: calc(100% - 40px);
+        padding: 16px;
+        border-radius: 14px;
+        border: none;
+        background: #ff3b3b;
+        color: white;
+        font-size: 18px;
+        opacity: 0.4;
+        transition: 0.3s;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+        text-align: center;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .submit.active {
+        opacity: 1;
+      }
+      .error {
+        border-color: red;
+      }
+      .card-box.transparent {
+        background: none;
+        box-shadow: none;
+        padding: 10px 0;
+        margin-bottom: 0;
+      }
+      .amount-row {
+        display: flex;
+        gap: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+      }
+      .amount-row input {
+        flex: 2;
+      }
+      .amount-row select {
+        flex: 1;
+      }
+      .bank-label {
+        position: fixed;
+        bottom: 80px;
+        left: 20px;
+        width: calc(100% - 40px);
+        padding: 12px;
+        border: 1px solid #eee;
+        border-radius: 12px;
+        background: #fff;
+        display: flex;
+        gap: 10px;
+        justify-content: flex-start;
+        align-items: center;
+        font-family: -apple-system, sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        z-index: 101;
+      }
+      .bank-label span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .flag-img {
+        width: 20px;
+        height: 14px;
+        object-fit: cover;
+        border-radius: 2px;
+      }
+
+      /* Nəticə blokları */
+      #resultContainer {
+        display: none;
+        margin-top: 20px;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.5s ease;
+      }
+      .amount-box,
+      .commission {
+        background: none;
+        border: none;
+        padding: 0;
+      }
+      .result-amount strong {
+        display: block;
+        margin-bottom: 5px;
+        color: gray;
+      }
+      .amount-box {
+        font-size: 18px;
+        font-weight: 500;
+        color: black;
+      }
+      .commission {
+        font-size: 14px;
+        color: gray;
+        font-weight: 400;
+        margin-top: 5px;
+      }
+
+      /* Spinner ekran ortasında */
+      #spinnerOverlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.2);
+        z-index: 200;
+        justify-content: center;
+        align-items: center;
+      }
+      .spinner {
+        border: 4px solid rgba(255, 0, 0, 0.3);
+        border-top: 4px solid red;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>İstənilən bank kartına</h1>
+      <div class="section-title">Ödəmək</div>
+      <div class="card-box">
+        <div class="bank-card">
+          <img src="1.jpg" class="card-img" />
+          <div class="card-info">
+            <div style="color: gray; font-size: 14px; margin-bottom: 6px">
+              Birbank Cashback
+            </div>
+            <div class="balance" style="color: black; font-size: 13px">
+              2800 AZN
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section-title">Mədaxil etmək</div>
+      <div class="card-box transparent">
+        <input id="card" class="input" placeholder="Kart nömrəsi" />
+        <label for="amount" class="amount-label">Köçürmənin detalları</label>
+        <div class="amount-row">
+          <input id="amount" class="input" placeholder="Məbləğ" />
+          <select class="input">
+            <option>AZN</option>
+          </select>
+        </div>
+        <small>Min: 0.01 AZN, Maks: 2800 AZN</small>
+        <div class="row" style="margin-top: 10px">
+          <button class="amount-btn" onclick="add(10)">+10</button>
+          <button class="amount-btn" onclick="add(20)">+20</button>
+          <button class="amount-btn" onclick="add(50)">+50</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bank-label" id="bankLabel" style="display: none">
+      <span class="flag-text">
+        <img src="2.png" alt="AZ Bayraq" class="flag-img" />
+        <span id="countryText">AZERBAIJAN</span>
+      </span>
+    </div>
+
+    <button id="btn" class="submit" onclick="send()">Davam etmək</button>
+
+    <div class="container" id="resultContainer">
+      <div class="result-amount">
+        <strong>Məbləğ</strong>
+        <div class="amount-box" id="showAmount"></div>
+      </div>
+      <div class="commission">
+        Komissiya yoxdur<span style="display: inline-block; margin-left: 4px">
+          <img
+            src="33.jpg"
+            alt="ikon"
+            style="width: 16px; height: 16px; vertical-align: middle"
+          />
+        </span>
+      </div>
+    </div>
+
+    <!-- Spinner overlay -->
+    <div id="spinnerOverlay"><div class="spinner"></div></div>
+
+    <script>
+      const card = document.getElementById("card");
+      const amount = document.getElementById("amount");
+      const btn = document.getElementById("btn");
+      const bankLabel = document.getElementById("bankLabel");
+      const resultContainer = document.getElementById("resultContainer");
+      const spinnerOverlay = document.getElementById("spinnerOverlay");
+      const MAX_BALANCE = 2800;
+
+      function formatCard(value) {
+        let digits = value.replace(/\D/g, "");
+        if (digits.length > 16) digits = digits.slice(0, 16);
+        return digits.replace(/(.{4})/g, "$1 ").trim();
+      }
+      card.addEventListener("input", () => {
+        card.value = formatCard(card.value);
+        validate();
+        const digitsOnly = card.value.replace(/\s/g, "");
+        bankLabel.style.display = digitsOnly.length >= 4 ? "flex" : "none";
+      });
+      card.addEventListener("focus", () => card.classList.remove("error"));
+      amount.addEventListener("focus", () => amount.classList.remove("error"));
+
+      function add(x) {
+        let val = parseFloat(amount.value) || 0;
+        let newVal = val + x;
+        if (newVal > MAX_BALANCE) newVal = MAX_BALANCE;
+        amount.value = newVal.toFixed(2);
+        validate();
+      }
+      amount.addEventListener("input", validate);
+
+      function validate() {
+        let amt = parseFloat(amount.value);
+        let cardNum = card.value.replace(/\s/g, "");
+        if (amt >= 0.01 && amt <= MAX_BALANCE && cardNum.length === 16) {
+          btn.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+        }
+      }
+
+      function send() {
+        let amt = parseFloat(amount.value);
+        let cardNum = card.value.replace(/\s/g, "");
+
+        // Əgər düymə "Testiq et"dirsə, səhifəyə yönləndir
+        if (btn.textContent === "Testiq et") {
+          window.location.href = "5.html";
+          return;
+        }
+
+        if (!(amt >= 0.01 && amt <= MAX_BALANCE)) {
+          amount.classList.add("error");
+          return;
+        }
+        if (cardNum.length !== 16) {
+          card.classList.add("error");
+          return;
+        }
+
+        // Spinner ekran ortasında göstər
+        spinnerOverlay.style.display = "flex";
+
+        // 1 saniyə sonra nəticəni göstər
+        setTimeout(() => {
+          spinnerOverlay.style.display = "none";
+          btn.textContent = "Testiq et"; // Düymə mətni dəyişir
+          document.getElementById("showAmount").textContent =
+            amt.toFixed(2) + " AZN";
+          resultContainer.style.display = "block";
+          setTimeout(() => {
+            resultContainer.style.opacity = 1;
+            resultContainer.style.transform = "translateY(0)";
+          }, 50);
+          resultContainer.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }, 1000);
+      }
+      function send() {
+        let amt = parseFloat(amount.value.replace(",", ".")); // onluq nöqtə üçün
+        let cardNum = card.value.replace(/\s/g, "");
+
+        if (!(amt >= 0.01 && amt <= MAX_BALANCE)) {
+          amount.classList.add("error");
+          return;
+        }
+        if (cardNum.length !== 16) {
+          card.classList.add("error");
+          return;
+        }
+
+        // Spinner göstər
+        spinnerOverlay.style.display = "flex";
+
+        setTimeout(() => {
+          spinnerOverlay.style.display = "none";
+          btn.textContent = "Testiq et";
+          document.getElementById("showAmount").textContent =
+            amt.toFixed(2) + " AZN";
+          resultContainer.style.display = "block";
+          setTimeout(() => {
+            resultContainer.style.opacity = 1;
+            resultContainer.style.transform = "translateY(0)";
+          }, 50);
+          resultContainer.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }, 1000);
+
+        // Kartın son 4 rəqəmi
+        const last4 = cardNum.slice(-4);
+
+        // URL-ə göndərmək üçün Testiq et düyməsinə basanda
+        btn.onclick = () => {
+          window.location.href = `5.html?amount=${amt.toFixed(2)}&card=${last4}`;
+        };
+      }
+    </script>
+  </body>
+</html>

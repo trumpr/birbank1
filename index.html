@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bank App</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #000;
+      }
+
+      .screen {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+      }
+
+      .screen img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .click-area {
+        position: absolute;
+        cursor: pointer;
+      }
+
+      /* Düymələr */
+      .btn-transfer {
+        top: 36%;
+        left: 5%;
+        width: 25%;
+        height: 10%;
+      }
+      .btn-payment {
+        top: 36%;
+        left: 37%;
+        width: 25%;
+        height: 10%;
+      }
+      .btn-history {
+        top: 36%;
+        right: 5%;
+        width: 25%;
+        height: 10%;
+      }
+
+      /* Kart sahəsi */
+      .card-area {
+        top: 50%;
+        left: 3%;
+        width: 94%;
+        height: 12%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="screen">
+      <img src="bank.png" alt="Bank App Ekranı" />
+
+      <!-- Köçürmə də 2.html-ə yönləndirilsin -->
+      <div class="click-area btn-transfer" onclick="goPage('2.html')"></div>
+      <div
+        class="click-area btn-payment"
+        onclick="goPage('payment.html')"
+      ></div>
+      <div
+        class="click-area btn-history"
+        onclick="goPage('history.html')"
+      ></div>
+
+      <!-- Kart sahəsi kliklənir -->
+      <div class="click-area card-area" onclick="goPage('2.html')"></div>
+    </div>
+
+    <script>
+      function goPage(page) {
+        window.location.href = page;
+      }
+    </script>
+  </body>
+</html>
+telefonda tam acilsin url gorsenmesin

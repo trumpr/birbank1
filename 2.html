@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birbank Cashback</title>
+
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f3f5f9;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px;
+        font-size: 18px;
+      }
+
+      .header .title {
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+        flex-grow: 1;
+      }
+
+      .card {
+        width: 25%;
+        margin: 10px auto;
+        background: linear-gradient(135deg, #0f2027, #203a43);
+        border-radius: 14px;
+        padding: 14px;
+        color: white;
+        position: relative;
+        font-size: 13px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .card .visa {
+        position: absolute;
+        right: 12px;
+        top: 10px;
+        font-weight: bold;
+        font-size: 12px;
+      }
+
+      .red-shape {
+        width: 85px;
+        height: 28px;
+        background: #ff1a1a;
+        transform: skewX(-20deg);
+        margin: 10px 0;
+        border-radius: 4px;
+      }
+
+      .balance {
+        text-align: center;
+        font-size: 28px;
+        margin: 15px 0;
+        font-weight: bold;
+      }
+
+      .actions {
+        display: flex;
+        justify-content: space-around;
+        margin: 15px;
+      }
+
+      .action {
+        background: #fff;
+        width: 30%;
+        text-align: center;
+        padding: 14px 5px;
+        border-radius: 14px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+        font-size: 14px;
+        text-decoration: none;
+        color: black;
+        display: block;
+      }
+
+      .section {
+        padding: 15px;
+      }
+
+      .section h3 {
+        font-size: 15px;
+        margin-bottom: 10px;
+      }
+
+      .transaction {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #fff;
+        padding: 12px;
+        border-radius: 12px;
+        margin-top: 10px;
+      }
+
+      .left {
+        display: flex;
+        align-items: center;
+      }
+
+      .icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        margin-right: 10px;
+      }
+
+      .small {
+        font-size: 12px;
+        color: gray;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="header">
+      <span>←</span>
+      <div class="title">Birbank Cashback</div>
+      <span>⤴</span>
+    </div>
+
+    <div class="card">
+      <div>• 7604</div>
+      <div class="visa">VISA</div>
+      <div class="red-shape"></div>
+      <div>Kart detalları</div>
+    </div>
+
+    <div class="balance">2800 ₼</div>
+
+    <div class="actions">
+      <a href="3.html" class="action">Köçür</a>
+      <div class="action">Ödənişlər</div>
+      <div class="action">Balansı artır</div>
+    </div>
+
+    <div class="section">
+      <h3>Mart ayı üzrə xərclənib: 5 362,32 ₼</h3>
+
+      <div class="small">Bu gün</div>
+
+      <div class="transaction">
+        <div class="left">
+          <div class="icon" style="background: #eaeaea"></div>
+          <div>
+            eBay<br />
+            <span class="small">Şopinq</span>
+          </div>
+        </div>
+        <div>2 $</div>
+      </div>
+
+      <div class="small" style="margin-top: 10px">27 Mart</div>
+
+      <div class="transaction">
+        <div class="left">
+          <div class="icon" style="background: red"></div>
+          <div>
+            Köçürməni alan<br />
+            <span class="small">ESMIRA R******</span>
+          </div>
+        </div>
+        <div>30 ₼</div>
+      </div>
+
+      <div class="transaction">
+        <div class="left">
+          <div class="icon" style="background: red"></div>
+          <div>
+            Köçürməni alan<br />
+            <span class="small">Digər istifadəçi</span>
+          </div>
+        </div>
+        <div>472 ₼</div>
+      </div>
+    </div>
+  </body>
+</html>

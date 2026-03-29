@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uğurlu əməliyyat</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        text-align: center;
+        color: #333;
+      }
+      .container {
+        padding: 20px;
+      }
+      .title {
+        font-size: 20px;
+        margin-top: 10px;
+        color: #444;
+      }
+      .circle-wrapper {
+        margin: 50px auto;
+        width: 220px;
+        height: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .outer-circle {
+        width: 220px;
+        height: 220px;
+        background: rgba(0, 200, 0, 0.08);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .middle-circle {
+        width: 160px;
+        height: 160px;
+        background: rgba(0, 200, 0, 0.15);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .inner-circle {
+        width: 95px;
+        height: 95px;
+        background: #2bb24c;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .check {
+        color: #fff;
+        font-size: 42px;
+        line-height: 1;
+      }
+      .success-text {
+        font-size: 22px;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+      .amount {
+        font-size: 38px;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+      .card {
+        font-size: 18px;
+        margin-top: 5px;
+      }
+      .subtitle {
+        color: #777;
+        margin-top: 10px;
+      }
+      .actions {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 40px;
+      }
+      .action {
+        text-align: center;
+        font-size: 14px;
+        color: #555;
+      }
+      .icon {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background: #eee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        font-size: 22px;
+        color: #d32f2f;
+      }
+      .button {
+        margin: 50px 20px;
+        padding: 16px;
+        background: #fff;
+        border-radius: 12px;
+        color: #d32f2f;
+        font-size: 18px;
+        border: 1px solid #eee;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">Bank kartına köçürmə</div>
+
+      <div class="circle-wrapper">
+        <div class="outer-circle">
+          <div class="middle-circle">
+            <div class="inner-circle">
+              <div class="check">✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="success-text">Uğurlu əməliyyat!</div>
+
+      <div class="amount" id="amount">0.00 AZN</div>
+      <div class="card" id="card">****0000</div>
+
+      <div class="subtitle">Bank kartına köçürmə</div>
+
+      <div class="actions">
+        <div class="action">
+          <div class="icon">★</div>
+          Şablonlara əlavə et
+        </div>
+        <div class="action">
+          <div class="icon">⟳</div>
+          Əməliyyatlar
+        </div>
+        <div class="action">
+          <div class="icon">i</div>
+          Detallar
+        </div>
+      </div>
+
+      <div class="button" onclick="window.close()">Bağlamaq</div>
+    </div>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const amt = params.get("amount") || "0.00";
+      const cardLast4 = params.get("card") || "0000";
+      document.getElementById("amount").textContent = amt + " AZN";
+      document.getElementById("card").textContent = "****" + cardLast4;
+    </script>
+  </body>
+</html>
